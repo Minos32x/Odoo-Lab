@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+
+        <record id="history_action" model="ir.actions.act_window">
+            <field name="name">History</field>
+            <field name="res_model">machine.history</field>
+            <field name="view_type">form</field>
+            <field name="view_model">tree,form</field>
+        </record>
+
+        <record id="history_tree" model="ir.ui.view">
+            <field name="name">History Tree View</field>
+            <field name="model">machine.history</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="description"/>
+                    <field name="user_id"/>
+                    <field name="create_date"/>
+                    <field name="machine_ids" />
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="history_create" model="ir.ui.view">
+            <field name="name">History Tree View</field>
+            <field name="model">machine.history</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <tree>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="create_date"/>
+                                <field name="machine_ids"/>
+
+                            </group>
+                            <notebook>
+                                <page string="Description">
+                                    <field name="description"/>
+                                </page>
+                            </notebook>
+                        </tree>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <menuitem id="history_menu" name="History" parent="machine_data" action="history_action"/>
+
+    </data>
+</odoo>

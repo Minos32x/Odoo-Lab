@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <record id="machine_action" model="ir.actions.act_window">
+            <field name="name">Machines</field>
+            <field name="res_model">machine.machines</field>
+            <field name="view_type">form</field>
+            <field name="view_model">tree,form</field>
+        </record>
+
+        <record id="machines_tree" model="ir.ui.view">
+            <field name="name">Machines Tree View</field>
+            <field name="model">machine.machines</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="price"/>
+                    <field name="description"/>
+                    <field name="create_date"/>
+                    <field name="department_id"/>
+                    <field name="create_uid" readonly="True" string="Created_By"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <menuitem id="machine_root" name="Machines"/>
+        <menuitem id="machine_data" name="Machines Data" parent="machine_root"/>
+        <menuitem id="machine_menu" name="Machines" parent="machine_data" action="machine_action"/>
+
+        <record id="create_machines_form" model="ir.ui.view">
+            <field name="name">Machines Tree View</field>
+            <field name="model">machine.machines</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar" string="Machine Avatar" />
+                                <field name="state" string="Approve"/>
+                                <field name="approved_by" readonly="True" widget="string" attrs="{'invisible':[('state','=',False)]}"/>
+                            </group>
+                            <group>
+                                <field name="name" string="Machine Name" required="True"/>
+                                <field name="price" string="Machine Price" required="True"/>
+                                <field name="department_id" />
+                                <field name="create_date" string="Date Of Creation" readonly="True"/>
+                                <field name="create_uid" string="Created_By" readonly="True"/>
+                                <field name="tag_id" widget="many2many_tags"/>
+                            </group>
+
+                        </group>
+
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                            <page string="History">
+                                <field name="history_id">
+
+                                    <tree editable="True">
+                                        <field name="user_id"/>
+                                        <field name="create_date"/>
+                                        <field name="machine_ids"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

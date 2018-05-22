@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+
+        <record id="tags_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">machine.tags</field>
+            <field name="view_type">form</field>
+            <field name="view_model">tree,form</field>
+
+        </record>
+
+        <menuitem id="tags_menu" parent="machines.data" name="Tags" action="tags_action"/>
+    </data>
+</odoo>
